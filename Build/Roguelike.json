@@ -1,0 +1,10 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "Roguelike.data.unityweb",
+"asmCodeUrl": "Roguelike.asm.code.unityweb",
+"asmMemoryUrl": "Roguelike.asm.memory.unityweb",
+"asmFrameworkUrl": "Roguelike.asm.framework.unityweb",
+"backgroundUrl": "Roguelike.jpg",
+"splashScreenStyle": "Dark",
+"backgroundColor": "#FFFFFF"
+}
