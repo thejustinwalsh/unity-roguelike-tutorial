@@ -25,6 +25,8 @@ public class Player : MovingObject
 	private Animator animator;
 	private int food;
 
+	private float minInputAxis = 0.75f;
+
 #if UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
 	private Vector2 touchOrigin = -Vector2.one;
 #endif
@@ -50,8 +52,11 @@ public class Player : MovingObject
 		int horizontal = 0, vertical = 0;
 
 #if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_WEBGL
-		horizontal = (int) Input.GetAxisRaw("Horizontal");
-		vertical = (horizontal == 0) ? (int) Input.GetAxisRaw("Vertical") : 0;
+		var horizontalAxis = Input.GetAxisRaw("Horizontal");
+		var veriticalAxis = Input.GetAxisRaw("Vertical");
+		horizontal = (horizontalAxis * horizontalAxis) > (minInputAxis * minInputAxis) ? (horizontalAxis >= 0.0f ? 1 : -1) : 0;
+		vertical = (veriticalAxis * veriticalAxis) > (minInputAxis * minInputAxis) ? (veriticalAxis >= 0.0f ? 1 : -1) : 0;
+		vertical = (horizontal == 0) ? vertical : 0;
  #elif UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
 		if (Input.touchCount > 0) {
 			Touch touch = Input.touches[0];
